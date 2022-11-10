@@ -19,6 +19,36 @@ router.post('/add', async(req,res,next) => {
     }
 })
 
+router.put('/checkoff/:id', async(req,res,next) => {
+    try {
+        const TodoUpdate = await Todo.findByPk(req.params.id)
+        if (TodoUpdate.isDone === true) {
+            await TodoUpdate.update({
+                isDone: false
+            })
+        } else {
+            await TodoUpdate.update({
+                isDone: true
+            })
+        }
+        const allTodos = await Todo.findAll()
+        res.send(allTodos)
+    } catch(err) {
+        next(err)
+    }
+})
+
+router.delete('/delete/:id', async(req,res,next) => {
+    try {
+        const TodoDelete = await Todo.findByPk(req.params.id)
+        await TodoDelete.destroy()
+        const allTodos = await Todo.findAll()
+        res.send(allTodos)
+    } catch(err) {
+        next(err)
+    }
+})
+
 
 
 module.exports = router

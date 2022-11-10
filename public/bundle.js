@@ -36040,12 +36040,40 @@ var TodoList = function (_a) {
         }); };
         getStuff();
     }, []);
+    var checkOff = function (event) { return __awaiter(void 0, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    event.preventDefault();
+                    return [4 /*yield*/, axios__WEBPACK_IMPORTED_MODULE_1___default().put("api/todo/checkoff/".concat(event.target.value))];
+                case 1:
+                    data = (_a.sent()).data;
+                    setTodos(data);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    var deleteTodo = function (event) { return __awaiter(void 0, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    event.preventDefault();
+                    return [4 /*yield*/, axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("api/todo/delete/".concat(event.target.value))];
+                case 1:
+                    data = (_a.sent()).data;
+                    setTodos(data);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
     return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null,
         react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { id: "todo-holder" }, todos === null || todos === void 0 ? void 0 : todos.map(function (todo) {
             return react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "todo-single", key: todo.id },
                 react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", { className: todo.isDone ? 'strike' : '' }, todo.name),
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { value: todo.id }, "Check"),
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { value: todo.id }, "Delete"));
+                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: checkOff, value: todo.id }, "Check"),
+                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: deleteTodo, value: todo.id }, "Delete"));
         }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TodoList);

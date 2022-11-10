@@ -17,14 +17,26 @@ const TodoList = ({todos, setTodos}:Props) => {
         getStuff()
     },[])
 
+    const checkOff = async(event:any) => {
+        event.preventDefault()
+        const {data} = await axios.put(`api/todo/checkoff/${event.target.value}`)
+        setTodos(data)
+    }
+
+    const deleteTodo = async(event:any) => {
+        event.preventDefault()
+        const {data} = await axios.delete(`api/todo/delete/${event.target.value}`)
+        setTodos(data)
+    }
+
     return (
         <>
             <div id="todo-holder">
                 {todos?.map((todo)=>
                     <div className="todo-single" key={todo.id}>
                         <p className={todo.isDone ? 'strike' : ''}>{todo.name}</p>
-                        <button value={todo.id}>Check</button>
-                        <button value={todo.id}>Delete</button>
+                        <button onClick={checkOff} value={todo.id}>Check</button>
+                        <button onClick={deleteTodo} value={todo.id}>Delete</button>
                     </div>
                 )}
             </div>
