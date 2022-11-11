@@ -35986,10 +35986,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var TodoItem = function (_a) {
     var id = _a.id, name = _a.name, isDone = _a.isDone, checkOff = _a.checkOff, deleteTodo = _a.deleteTodo, editTodo = _a.editTodo;
+    var _b = react__WEBPACK_IMPORTED_MODULE_0___default().useState(""), edit = _b[0], setEdit = _b[1];
+    var _c = react__WEBPACK_IMPORTED_MODULE_0___default().useState(false), editing = _c[0], setEditing = _c[1];
     return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "todo-single", key: id },
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", { className: isDone ? 'strike' : '' }, name),
+        editing ? react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null,
+            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", { placeholder: name }),
+            " ",
+            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "Submit"))
+            : react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", { className: isDone ? 'strike' : '' }, name),
         react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: checkOff, value: id }, "Check"),
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "Edit"),
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: function () { return setEditing(!editing); } }, "Edit"),
         react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: deleteTodo, value: id }, "Delete")));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TodoItem);
