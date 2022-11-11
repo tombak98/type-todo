@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Todo } from "../model";
+import TodoItem from './TodoItem'
 
 interface Props {
     todos: Todo[],
@@ -29,16 +30,16 @@ const TodoList = ({todos, setTodos}:Props) => {
         setTodos(data)
     }
 
+    const editTodo = async(event:any) => {
+
+    }
+
     return (
         <>
             <div id="todo-holder">
                 {todos?.map((todo)=>
-                    <div className="todo-single" key={todo.id}>
-                        <p className={todo.isDone ? 'strike' : ''}>{todo.name}</p>
-                        <button onClick={checkOff} value={todo.id}>Check</button>
-                        <button>Edit</button>
-                        <button onClick={deleteTodo} value={todo.id}>Delete</button>
-                    </div>
+                    <TodoItem deleteTodo={deleteTodo} checkOff={checkOff} editTodo={editTodo}
+                    name={todo.name} id={todo.id} isDone={todo.isDone}/>
                 )}
             </div>
         </>

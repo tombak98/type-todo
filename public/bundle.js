@@ -35970,6 +35970,33 @@ var InputField = function (_a) {
 
 /***/ }),
 
+/***/ "./src/components/TodoItem.tsx":
+/*!*************************************!*\
+  !*** ./src/components/TodoItem.tsx ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var TodoItem = function (_a) {
+    var id = _a.id, name = _a.name, isDone = _a.isDone, checkOff = _a.checkOff, deleteTodo = _a.deleteTodo, editTodo = _a.editTodo;
+    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "todo-single", key: id },
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", { className: isDone ? 'strike' : '' }, name),
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: checkOff, value: id }, "Check"),
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "Edit"),
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: deleteTodo, value: id }, "Delete")));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TodoItem);
+
+
+/***/ }),
+
 /***/ "./src/components/TodoList.tsx":
 /*!*************************************!*\
   !*** ./src/components/TodoList.tsx ***!
@@ -35985,6 +36012,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _TodoItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TodoItem */ "./src/components/TodoItem.tsx");
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36021,6 +36049,7 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+
 
 
 var TodoList = function (_a) {
@@ -36068,13 +36097,14 @@ var TodoList = function (_a) {
             }
         });
     }); };
+    var editTodo = function (event) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/];
+        });
+    }); };
     return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null,
         react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { id: "todo-holder" }, todos === null || todos === void 0 ? void 0 : todos.map(function (todo) {
-            return react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "todo-single", key: todo.id },
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", { className: todo.isDone ? 'strike' : '' }, todo.name),
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: checkOff, value: todo.id }, "Check"),
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "Edit"),
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: deleteTodo, value: todo.id }, "Delete"));
+            return react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TodoItem__WEBPACK_IMPORTED_MODULE_2__["default"], { deleteTodo: deleteTodo, checkOff: checkOff, editTodo: editTodo, name: todo.name, id: todo.id, isDone: todo.isDone });
         }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TodoList);
