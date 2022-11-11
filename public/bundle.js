@@ -36073,6 +36073,7 @@ var TodoList = function (_a) {
             return react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "todo-single", key: todo.id },
                 react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", { className: todo.isDone ? 'strike' : '' }, todo.name),
                 react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: checkOff, value: todo.id }, "Check"),
+                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "Edit"),
                 react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: deleteTodo, value: todo.id }, "Delete"));
         }))));
 };

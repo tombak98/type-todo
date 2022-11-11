@@ -36,6 +36,7 @@ const TodoList = ({todos, setTodos}:Props) => {
                     <div className="todo-single" key={todo.id}>
                         <p className={todo.isDone ? 'strike' : ''}>{todo.name}</p>
                         <button onClick={checkOff} value={todo.id}>Check</button>
+                        <button>Edit</button>
                         <button onClick={deleteTodo} value={todo.id}>Delete</button>
                     </div>
                 )}
