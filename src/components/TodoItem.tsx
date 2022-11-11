@@ -7,7 +7,7 @@ interface Props {
     name: string;
     checkOff: (event: any) => Promise<void>;
     deleteTodo: (event: any) => Promise<void>;
-    editTodo: (event: any) => Promise<void>;
+    editTodo: (event: any, newName: string) => Promise<void>;
 }
 
 const TodoItem = ({id, name, isDone, checkOff, deleteTodo, editTodo}:Props) => {
@@ -18,11 +18,18 @@ const TodoItem = ({id, name, isDone, checkOff, deleteTodo, editTodo}:Props) => {
     return (
         <div className="todo-single" key={id}>
             {editing ? <>
-            <input placeholder={name}></input> <button>Submit</button>
+            <input value={edit} onChange={(e)=>setEdit(e.target.value)} placeholder={name}></input> 
+            <button value={id} onClick={(event)=>{
+                editTodo(event, edit)
+                setEditing(false)
+            }}>Submit</button>
             </>
             : <p className={isDone ? 'strike' : ''}>{name}</p>}
             <button onClick={checkOff} value={id}>Check</button>
-            <button onClick={()=>setEditing(!editing)}>Edit</button>
+            <button onClick={()=>{
+                setEditing(!editing)
+                setEdit("")
+                }}>Edit</button>
             <button onClick={deleteTodo} value={id}>Delete</button>
         </div>
     )

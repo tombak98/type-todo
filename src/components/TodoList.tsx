@@ -30,8 +30,12 @@ const TodoList = ({todos, setTodos}:Props) => {
         setTodos(data)
     }
 
-    const editTodo = async(event:any) => {
-
+    const editTodo = async(event:any, newName:string) => {
+        event.preventDefault()
+        const {data} = await axios.put(`/api/todo/update/${event.target.value}`, {
+            name: newName
+        })
+        setTodos(data)
     }
 
     return (

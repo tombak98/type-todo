@@ -49,6 +49,17 @@ router.delete('/delete/:id', async(req,res,next) => {
     }
 })
 
+router.put('/update/:id', async(req,res,next) => {
+    try {
+        const TodoEdit = await Todo.findByPk(req.params.id)
+        await TodoEdit.update(req.body)
+        const allTodos = await Todo.findAll()
+        res.send(allTodos)
+    } catch(err) {
+        next(err)
+    }
+})
+
 
 
 module.exports = router

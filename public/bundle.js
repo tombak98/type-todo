@@ -35990,12 +35990,17 @@ var TodoItem = function (_a) {
     var _c = react__WEBPACK_IMPORTED_MODULE_0___default().useState(false), editing = _c[0], setEditing = _c[1];
     return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "todo-single", key: id },
         editing ? react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null,
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", { placeholder: name }),
-            " ",
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "Submit"))
+            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", { value: edit, onChange: function (e) { return setEdit(e.target.value); }, placeholder: name }),
+            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { value: id, onClick: function (event) {
+                    editTodo(event, edit);
+                    setEditing(false);
+                } }, "Submit"))
             : react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", { className: isDone ? 'strike' : '' }, name),
         react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: checkOff, value: id }, "Check"),
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: function () { return setEditing(!editing); } }, "Edit"),
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: function () {
+                setEditing(!editing);
+                setEdit("");
+            } }, "Edit"),
         react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: deleteTodo, value: id }, "Delete")));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TodoItem);
@@ -36103,9 +36108,20 @@ var TodoList = function (_a) {
             }
         });
     }); };
-    var editTodo = function (event) { return __awaiter(void 0, void 0, void 0, function () {
+    var editTodo = function (event, newName) { return __awaiter(void 0, void 0, void 0, function () {
+        var data;
         return __generator(this, function (_a) {
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    event.preventDefault();
+                    return [4 /*yield*/, axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/todo/update/".concat(event.target.value), {
+                            name: newName
+                        })];
+                case 1:
+                    data = (_a.sent()).data;
+                    setTodos(data);
+                    return [2 /*return*/];
+            }
         });
     }); };
     return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null,
